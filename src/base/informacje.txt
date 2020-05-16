@@ -1,0 +1,15 @@
+Zakres zadania
+
+Zadanie polega na przygotowaniu dwóch etapów koszyka zakupowego w układzie RWD z dwoma widokami (web/mWeb, zmiana widoku po przekroczeniu 600px szerokości) z uwzględnieniem wielojęzyczność (min. 2 języki).
+ - Pierwszy etap to obsługa formularza z maskami wprowadzania danych i walidacją pól (Wprowadzanie danych przez użytkownika w formularzu "Dane zamawiającego" - web-1a.png, mWeb-1a.png).
+ - Drugi etap to prezentacja wprowadzonych danych (Dane zostały wprowadzone, poprawnie się wyświetlają, ekran z widokiem dostawy i płatności - web-1b.png, mWeb-1b.png).
+
+Sugestie w kontekście wykonania:
+- HTML5, CSS3, JS (>=ES6) lub React.js,
+- symulacja komunikacji zapisu i odczytu danych z zewnętrznego REST API (np. mock pobrania i zapisu danych użytkownika np. w formacie JSON),
+- testy (jednostkowe lub e2e),
+- grafiki jako PNG,
+- wykorzystanie wstępnie przygotowanego girdu
+- czcionka https://fonts.google.com/specimen/Roboto (odpowiednik 11px), Regular 400.
+
+Po otrzymaniu rozwiązanie zostanie ono sprawdzone przez zespół tak szybko jak to możliwe. W przypadku pozytywnej oceny kolejnym etapem będzie dyskusja odnośnie rozwiązania - spotkanie z zespołem.
