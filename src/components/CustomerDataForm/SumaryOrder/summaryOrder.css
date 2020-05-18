@@ -1,0 +1,33 @@
+.right-site {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  vertical-align: top;
+  padding: 1.75rem 1rem;
+}
+.right-site h2 {
+  padding-bottom: 2rem;
+}
+.right-site .details-block,
+.right-site .summary-block {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+.right-site .details-block:last-child {
+  border-bottom: 1px solid rgb(219, 215, 215);
+  padding-bottom: 1rem;
+}
+.right-site .summary-block {
+  padding: 1.25rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.right-site .summary button.disabled {
+  background-color: #f08e83;
+  border: #f08e83;
+  border-radius: 2px;
+  color: #fff;
+  padding: 0.5rem;
+  font-size: 1rem;
+  width: 100%;
+  cursor: pointer;
+}

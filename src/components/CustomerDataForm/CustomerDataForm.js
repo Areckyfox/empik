@@ -2,7 +2,15 @@ import React, { useState, useEffect } from 'react'
 
 import { useTranslation } from 'react-i18next'
 import Loadingindicator from '../UI/LoadingIndicator'
+import SumaryOrder from '../CustomerDataForm/SumaryOrder/SumaryOrder'
 import './customerDataForm.css'
+import './checkbox.css'
+import './radio.css'
+
+import { getData } from '../../helpers/fetch-function/getData'
+import { getDataSummary } from '../../helpers/fetch-function/getDataSummary'
+import { resetFormHandler } from '../../helpers/handlers/resetFormHandler'
+// import InputText from '../CustomerDataForm/InputText/InputText'
 
 const CustomerDataForm = () => {
   const { t } = useTranslation()
@@ -21,37 +29,21 @@ const CustomerDataForm = () => {
   })
   // eslint-disable-next-line
   const [dataState, setDataState] = useState([])
+  const [dataSummary, setDataSumary] = useState([[], false])
   const [loader, setLoader] = useState(false)
 
   useEffect(() => {
-    fetch('https://photoshop-empik.firebaseio.com/dataClients.json', {
-      method: 'GET',
-    })
-      .then((response) => response.json())
-      .then((responseData) => {
-        console.log(responseData)
-
-        const arrayDataClient = []
-        for (const key in responseData) {
-          arrayDataClient.push({
-            id: key,
-            userType: responseData[key].userType,
-            companyName: responseData[key].companyName,
-            nip: responseData[key].nip,
-            country: responseData[key].country,
-            street: responseData[key].street,
-            streetNumber: responseData[key].streetNumber,
-            postalCode: responseData[key].postalCode,
-            town: responseData[key].town,
-            codeNumberPhone: responseData[key].codeNumberPhone,
-            phoneNumber: responseData[key].phoneNumber,
-            wantPaperRecipt: responseData[key].wantPaperRecipt,
-          })
-        }
-        setDataState(arrayDataClient)
-      })
+    getData(setDataState)
   }, [])
-
+  useEffect(() => {
+    getDataSummary(setDataSumary)
+  }, [])
+  // const addSummary = {
+  //   summaryProducts: '35,92',
+  //   vatValue: '-3,21',
+  //   deliveryCost: '00,00',
+  //   sum: '32,71',
+  // }
   const addCustomerData = (dataClient) => {
     setLoader(true)
     fetch('https://photoshop-empik.firebaseio.com/dataClients.json', {
@@ -68,7 +60,7 @@ const CustomerDataForm = () => {
           ...prevData,
           { id: responseData.name, ...dataClient },
         ])
-        resetFormHandler()
+        resetFormHandler(setInputState)
       })
       .catch((error) => {
         // setError('somthing went wrong try again')
@@ -93,31 +85,20 @@ const CustomerDataForm = () => {
       wantPaperRecipt: inputState.wantPaperRecipt,
     })
   }
-  const resetFormHandler = () => {
-    setInputState({
-      privatePerson: false,
-      companyName: '',
-      nip: '',
-      country: '',
-      street: '',
-      streetNumber: '',
-      postalCode: '',
-      town: '',
-      codeNumberPhone: '00',
-      phoneNumber: '',
-      wantPaperRecipt: null,
-    })
-  }
+
+  const rightSiteLoaded = dataSummary[1] ? (
+    <SumaryOrder dataSummary={dataSummary[0][0]} />
+  ) : null
 
   return (
     <section className='data-form span-1-of-1 display-inlineB'>
-      <div>{JSON.stringify(dataState)}</div>
+      {/* <div>{JSON.stringify(dataState)}</div> */}
+      <div>{JSON.stringify(dataSummary)}</div>
       <h1>{t('paymentMethod')}</h1>
       <div className='left-site span-2-of-3 display-inlineB'>
         <h2>{t('details')}</h2>
         <form className='span-1-of-2 display-inlineB' onSubmit={submitHandler}>
-          <div className='form-control'>
-            <label htmlFor='person'>Private Person</label>
+          <div className='form-control radio'>
             <input
               type='radio'
               id='person'
@@ -131,20 +112,26 @@ const CustomerDataForm = () => {
               }}
               defaultChecked
             />
-            <label htmlFor='company'></label>
+            <label htmlFor='person'></label>
+            <span>{t('privatePerson')}</span>
             <input
               type='radio'
               id='company'
               name='userType'
               value='company'
               onChange={({ target: { value } }) => {
+                console.log('changeRadio')
+
                 setInputState((prevState) => ({
                   ...prevState,
                   userType: value,
                 }))
               }}
             />
+            <label htmlFor='company'></label>
+            <span>Company</span>
           </div>
+
           <div className='form-control'>
             <label htmlFor='company-name'></label>
             <input
@@ -301,21 +288,20 @@ const CustomerDataForm = () => {
               }}
             />
           </div>
-          <div className='form-control'>
-            <label htmlFor='wantPaperRecipt'>
-              Want paper recipt
-              <input
-                type='checkbox'
-                id='want-paper-recipt'
-                checked={inputState.wantPaperRecipt}
-                onChange={({ target: { checked } }) => {
-                  setInputState((prevState) => ({
-                    ...prevState,
-                    wantPaperRecipt: !prevState.wantPaperRecipt,
-                  }))
-                }}
-              />
-            </label>
+          <div className='form-control checkbox'>
+            <input
+              type='checkbox'
+              id='want-paper-recipt'
+              checked={!!inputState.wantPaperRecipt}
+              onChange={({ target: { checked } }) => {
+                setInputState((prevState) => ({
+                  ...prevState,
+                  wantPaperRecipt: !prevState.wantPaperRecipt,
+                }))
+              }}
+            />
+            <label htmlFor='wantPaperRecipt'></label>
+            <span>Want paper recipt</span>
           </div>
           <div className='customer-data-form__actions'>
             {loader && <Loadingindicator />}
@@ -326,13 +312,12 @@ const CustomerDataForm = () => {
         </form>
         <div className='information-vat span-1-of-2 display-inlineB'>
           <span>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias unde
-            ipsam, atque minus adipisci eveniet sit molestiae accusamus dicta
-            neque aspernatur tempore corrupti sunt voluptate distinctio
+            Na nasze usługi aplikuje się przeniesienie stawki VAT. Odbiorca ma
+            obowiązek zapłacenia VATu. Podana cena jest ceną netto
           </span>
         </div>
       </div>
-      <div className='right-site span-1-of-3 display-inlineB'></div>
+      {rightSiteLoaded}
     </section>
   )
 }
