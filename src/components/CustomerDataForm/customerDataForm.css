@@ -41,6 +41,12 @@
   margin-left: 0.75rem;
   cursor: pointer;
 }
+@media screen and (max-width: 600px) {
+  .customer-data-form__actions button {
+    width: 100%;
+    margin: 0.5rem 0 2.5rem 0;
+  }
+}
 
 .select-css {
   outline: none;
@@ -73,9 +79,17 @@ h1 {
 .less-width > input {
   width: calc(100% - 0.75rem);
 }
+
 .less-width-margin-left > input {
   width: calc(100% - 0.75rem);
   margin-left: 0.75rem;
+}
+@media screen and (max-width: 600px) {
+  .less-width > input,
+  .less-width-margin-left > input {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 .left-site .information-vat {
   vertical-align: top;

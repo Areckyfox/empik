@@ -3,6 +3,11 @@
   vertical-align: top;
   padding: 1.75rem 1rem;
 }
+@media screen and (max-width: 600px) {
+  .right-site {
+    margin-top: 1rem;
+  }
+}
 .right-site h2 {
   padding-bottom: 2rem;
 }
