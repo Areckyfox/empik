@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 
+import { useTranslation } from 'react-i18next'
 import Loadingindicator from '../UI/LoadingIndicator'
 import './customerDataForm.css'
 
-const CustomerDataForm = React.memo(() => {
+const CustomerDataForm = () => {
+  const { t } = useTranslation()
   const [inputState, setInputState] = useState({
-    title: 'private person',
+    userType: 'person',
     companyName: '',
     nip: '',
     country: '',
@@ -15,8 +17,9 @@ const CustomerDataForm = React.memo(() => {
     town: '',
     codeNumberPhone: '00',
     phoneNumber: '',
-    wantPaperRecipt: null,
+    wantPaperRecipt: false,
   })
+  // eslint-disable-next-line
   const [dataState, setDataState] = useState([])
   const [loader, setLoader] = useState(false)
 
@@ -32,7 +35,7 @@ const CustomerDataForm = React.memo(() => {
         for (const key in responseData) {
           arrayDataClient.push({
             id: key,
-            title: responseData[key].title,
+            userType: responseData[key].userType,
             companyName: responseData[key].companyName,
             nip: responseData[key].nip,
             country: responseData[key].country,
@@ -77,7 +80,7 @@ const CustomerDataForm = React.memo(() => {
     event.preventDefault()
 
     addCustomerData({
-      title: inputState.title,
+      userType: inputState.userType,
       companyName: inputState.companyName,
       nip: inputState.nip,
       country: inputState.country,
@@ -92,7 +95,7 @@ const CustomerDataForm = React.memo(() => {
   }
   const resetFormHandler = () => {
     setInputState({
-      title: 'private person',
+      privatePerson: false,
       companyName: '',
       nip: '',
       country: '',
@@ -108,14 +111,44 @@ const CustomerDataForm = React.memo(() => {
 
   return (
     <section className='data-form span-1-of-1 display-inlineB'>
-      {/* <div>{JSON.stringify(dataState)}</div> */}
-      <h1>Delivery and payment method</h1>
+      <div>{JSON.stringify(dataState)}</div>
+      <h1>{t('paymentMethod')}</h1>
       <div className='left-site span-2-of-3 display-inlineB'>
-        <h2>Customer details </h2>
+        <h2>{t('details')}</h2>
         <form className='span-1-of-2 display-inlineB' onSubmit={submitHandler}>
+          <div className='form-control'>
+            <label htmlFor='person'>Private Person</label>
+            <input
+              type='radio'
+              id='person'
+              name='userType'
+              value='person'
+              onChange={({ target: { value } }) => {
+                setInputState((prevState) => ({
+                  ...prevState,
+                  userType: value,
+                }))
+              }}
+              defaultChecked
+            />
+            <label htmlFor='company'></label>
+            <input
+              type='radio'
+              id='company'
+              name='userType'
+              value='company'
+              onChange={({ target: { value } }) => {
+                setInputState((prevState) => ({
+                  ...prevState,
+                  userType: value,
+                }))
+              }}
+            />
+          </div>
           <div className='form-control'>
             <label htmlFor='company-name'></label>
             <input
+              required
               type='text'
               id='company-name'
               placeholder={'Company name'}
@@ -268,7 +301,22 @@ const CustomerDataForm = React.memo(() => {
               }}
             />
           </div>
-
+          <div className='form-control'>
+            <label htmlFor='wantPaperRecipt'>
+              Want paper recipt
+              <input
+                type='checkbox'
+                id='want-paper-recipt'
+                checked={inputState.wantPaperRecipt}
+                onChange={({ target: { checked } }) => {
+                  setInputState((prevState) => ({
+                    ...prevState,
+                    wantPaperRecipt: !prevState.wantPaperRecipt,
+                  }))
+                }}
+              />
+            </label>
+          </div>
           <div className='customer-data-form__actions'>
             {loader && <Loadingindicator />}
             <div className='span-3-of-4 display-inlineB'>
@@ -287,6 +335,6 @@ const CustomerDataForm = React.memo(() => {
       <div className='right-site span-1-of-3 display-inlineB'></div>
     </section>
   )
-})
+}
 
 export default CustomerDataForm
