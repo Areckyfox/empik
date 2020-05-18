@@ -2,7 +2,7 @@ import React from 'react'
 import i18n from 'i18next'
 
 const LngSelect = () => (
-  <fieldset>
+  <fieldset className='selectLanguage'>
     {['pl', 'en'].map((lng) => (
       <label key={lng}>
         {lng}

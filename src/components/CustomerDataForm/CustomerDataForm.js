@@ -93,7 +93,7 @@ const CustomerDataForm = () => {
   return (
     <section className='data-form span-1-of-1 display-inlineB'>
       {/* <div>{JSON.stringify(dataState)}</div> */}
-      <div>{JSON.stringify(dataSummary)}</div>
+      {/* <div>{JSON.stringify(dataSummary)}</div> */}
       <h1>{t('paymentMethod')}</h1>
       <div className='left-site span-2-of-3 display-inlineB'>
         <h2>{t('details')}</h2>
@@ -301,12 +301,12 @@ const CustomerDataForm = () => {
               }}
             />
             <label htmlFor='wantPaperRecipt'></label>
-            <span>Want paper recipt</span>
+            <span>{t('paperRecipt')}</span>
           </div>
           <div className='customer-data-form__actions'>
             {loader && <Loadingindicator />}
             <div className='span-3-of-4 display-inlineB'>
-              <button type='submit'>Save</button>
+              <button type='submit'>{t('save')}</button>
             </div>
           </div>
         </form>

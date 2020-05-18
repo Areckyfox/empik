@@ -1,31 +1,33 @@
 import React from 'react'
 import './summaryOrder.css'
+import { useTranslation } from 'react-i18next'
 
 const SumaryOrder = ({ dataSummary }) => {
+  const { t } = useTranslation()
   console.log(dataSummary)
   return (
     <div className='right-site span-1-of-3 display-inlineB'>
-      <h2>Podsumowanie:</h2>
+      <h2>{t('summary')}</h2>
       <div className='details'>
         <div className='details-block'>
-          <span className='name'>Wartość Produktów:</span>
+          <span className='name'>{t('summaryProducts')}</span>
           <span className='value'>{`${dataSummary.summaryProducts} zł`}</span>
         </div>
         <div className='details-block'>
-          <span className='name'>Wartość VAT(23%):</span>
+          <span className='name'>{t('vatValue')}</span>
           <span className='value'>{dataSummary.vatValue}</span>
         </div>
         <div className='details-block'>
-          <span className='name'>Koszt dostawy:</span>
+          <span className='name'>{t('deliveryCost')}</span>
           <span className='value'>{`${dataSummary.deliveryCost} zł`}</span>
         </div>
       </div>
       <div className='summary'>
         <div className='summary-block'>
-          <span className='name'>Suma</span>
+          <span className='name'>{t('sum')}</span>
           <span className='value'>{`${dataSummary.sum} zł`}</span>
         </div>
-        <button className='disabled'>Przejdź dalej</button>
+        <button className='disabled'>{t('next')}</button>
       </div>
     </div>
   )
