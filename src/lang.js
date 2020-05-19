@@ -14,6 +14,16 @@ const resources = {
       next: 'Go next',
       paperRecipt: 'Want paper recipt',
       save: 'Save',
+      company: 'Company',
+      fullName: 'Full name',
+      companyName: 'Company name',
+      country: 'Country',
+      street: 'Street',
+      streetNumber: 'number',
+      town: 'Town',
+      phoneNumber: 'Phone Number',
+      vatDescription:
+        'Transfer of VAT rate is applied to our services. The recipient is obliged to pay VAT. The price is a net price',
     },
   },
   pl: {
@@ -29,6 +39,16 @@ const resources = {
       next: 'Przejdź dalej',
       paperRecipt: 'Chcę otrzymać fakturę papierową',
       save: 'Zapisz',
+      company: 'Firma',
+      fullName: 'Imię i nazwisko',
+      companyName: 'Nazwa firmy',
+      country: 'Kraj',
+      street: 'Ulica',
+      streetNumber: 'numer',
+      town: 'Miasto',
+      phoneNumber: 'Numer telefonu',
+      vatDescription:
+        'Na nasze usługi aplikuje się przeniesienie stawki VAT. Odbiorca ma obowiązek zapłacenia VATu. Podana cena jest ceną netto',
     },
   },
 }

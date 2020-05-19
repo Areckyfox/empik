@@ -1,6 +1,11 @@
 .data-form {
   padding: 2rem;
 }
+@media screen and (max-width: 600px) {
+  .data-form {
+    padding: 1rem;
+  }
+}
 
 .form-control label,
 .form-control select,
@@ -23,6 +28,16 @@
 .form-control input:focus {
   outline: none;
   border-bottom-color: #000;
+}
+
+.edit-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(204, 200, 200);
+  padding-bottom: 0.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 95%;
 }
 
 .customer-data-form__actions {
@@ -54,7 +69,7 @@
   -webkit-appearance: none;
   appearance: none;
   background-color: #fff;
-  background-image: url('../../arrow-down.svg');
+  background-image: url('../../img/arrow-down.svg');
   background-repeat: no-repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
@@ -65,14 +80,12 @@
 h1 {
   font-size: 2rem;
 }
-.left-site h2 {
-  border-bottom: 1px solid rgb(204, 200, 200);
-  padding-bottom: 0.5rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  width: 90%;
-}
 
+@media screen and (max-width: 600px) {
+  .left-site h2 {
+    width: 100%;
+  }
+}
 .display-inlineB {
   display: inline-block;
 }

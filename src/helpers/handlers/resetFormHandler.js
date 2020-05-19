@@ -1,6 +1,7 @@
 export const resetFormHandler = (setInputState) => {
   setInputState({
-    privatePerson: false,
+    userType: 'person',
+    fullName: '',
     companyName: '',
     nip: '',
     country: '',
@@ -10,6 +11,6 @@ export const resetFormHandler = (setInputState) => {
     town: '',
     codeNumberPhone: '00',
     phoneNumber: '',
-    wantPaperRecipt: null,
+    wantPaperRecipt: false,
   })
 }

@@ -4,13 +4,12 @@ export const getData = (setStater) =>
   })
     .then((response) => response.json())
     .then((responseData) => {
-      console.log(responseData)
-
       const arrayDataClient = []
       for (const key in responseData) {
         arrayDataClient.push({
           id: key,
           userType: responseData[key].userType,
+          fullName: responseData[key].fullName,
           companyName: responseData[key].companyName,
           nip: responseData[key].nip,
           country: responseData[key].country,

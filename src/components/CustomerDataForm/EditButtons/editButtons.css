@@ -1,0 +1,19 @@
+.edit-buttons.mobile {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .edit-buttons.mobile {
+    display: inline-block;
+  }
+  .edit-buttons.desktop {
+    display: none;
+  }
+}
+.edit-buttons button {
+  text-transform: uppercase;
+  margin-right: 2rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}

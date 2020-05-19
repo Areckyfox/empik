@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 
 const SumaryOrder = ({ dataSummary }) => {
   const { t } = useTranslation()
-  console.log(dataSummary)
   return (
     <div className='right-site span-1-of-3 display-inlineB'>
       <h2>{t('summary')}</h2>

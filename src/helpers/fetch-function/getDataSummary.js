@@ -4,8 +4,6 @@ export const getDataSummary = (setStater) =>
   })
     .then((response) => response.json())
     .then((responseData) => {
-      // console.log(responseData)
-
       const arrayDataSummary = []
       for (const key in responseData) {
         arrayDataSummary.push({

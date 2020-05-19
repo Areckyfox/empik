@@ -1,0 +1,21 @@
+.summary-form {
+  vertical-align: top;
+}
+.summary-form span {
+  display: block;
+}
+.summary-form .information-type-user span {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.summary-form .summary span {
+  padding: 0.25rem 0;
+}
+.summary-form .summary span:first-child {
+  font-weight: 700;
+  padding-top: 0;
+}
+.summary-form .want-paper-recipt span {
+  padding-top: 0.5rem;
+}
