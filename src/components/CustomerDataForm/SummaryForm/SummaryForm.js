@@ -1,5 +1,6 @@
 import React from 'react'
 import './summaryForm.css'
+import { useTranslation } from 'react-i18next'
 const SummaryForm = ({
   dataState: {
     userType,
@@ -16,10 +17,13 @@ const SummaryForm = ({
     wantPaperRecipt,
   },
 }) => {
+  const { t } = useTranslation()
   return (
     <div className='summary-form span-1-of-2 display-inlineB'>
       <div className='information-type-user '>
-        <span>{userType === 'company' ? 'Firma' : 'Osoba prywatna'}</span>
+        <span>
+          {userType === 'company' ? t('company') : t('privatePerson')}
+        </span>
         <img src='' alt='' />
       </div>
       <div className='summary'>
@@ -31,12 +35,12 @@ const SummaryForm = ({
         ) : (
           <span>{fullName}</span>
         )}
-        <span>{`ul ${street} ${streetNumber}`}</span>
+        <span>{`${t('shortStreet')} ${street} ${streetNumber}`}</span>
         <span>{`${postalCode} ${town}, ${country}`}</span>
-        <span>{`tel. (${codeNumberPhone}) ${phoneNumber}`}</span>
+        <span>{`${t('shortPhone')}. (${codeNumberPhone}) ${phoneNumber}`}</span>
       </div>
       <div className='want-paper-recipt'>
-        {wantPaperRecipt && <span>Chcę otrzymać papierową fakturę</span>}
+        {wantPaperRecipt && <span>{t('paperRecipt')}</span>}
       </div>
     </div>
   )

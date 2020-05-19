@@ -24,6 +24,10 @@ const resources = {
       phoneNumber: 'Phone Number',
       vatDescription:
         'Transfer of VAT rate is applied to our services. The recipient is obliged to pay VAT. The price is a net price',
+      addNewData: 'add new data',
+      edit: 'edit',
+      shortStreet: 'str.',
+      shortPhone: 'phone',
     },
   },
   pl: {
@@ -49,6 +53,10 @@ const resources = {
       phoneNumber: 'Numer telefonu',
       vatDescription:
         'Na nasze usługi aplikuje się przeniesienie stawki VAT. Odbiorca ma obowiązek zapłacenia VATu. Podana cena jest ceną netto',
+      addNewData: 'dodaj nowe dane',
+      edit: 'edytuj',
+      shortStreet: 'ul.',
+      shortPhone: 'tel.',
     },
   },
 }
